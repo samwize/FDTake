@@ -290,7 +290,8 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
                     topVC.present(self.imagePicker, animated: true, completion: nil)
                 } else {
                     // On iPad use pop-overs.
-                    self.popover.present(from: popOverPresentRect, in: topVC.view!, permittedArrowDirections: .any, animated: true)
+                    let p = self.presentingView ?? topVC.view!
+                    self.popover.present(from: popOverPresentRect, in: p, permittedArrowDirections: .any, animated: true)
                 }
             }
             alertController!.addAction(action)
