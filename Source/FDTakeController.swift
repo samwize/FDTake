@@ -192,9 +192,10 @@ open class FDTakeController: NSObject /* , UIImagePickerControllerDelegate, UINa
     // MARK: - Localization
 
     private func localizeString(_ string:FDTakeControllerLocalizableStrings) -> String {
-        let frameworkBundle = Bundle(for: FDTakeController.self)
-        let url = frameworkBundle.url(forResource: "FDTake", withExtension: "bundle")!
-        let bundle = Bundle(url: url)!
+        var bundle = Bundle(for: FDTakeController.self)
+        if let url = bundle.url(forResource: "FDTake", withExtension: "bundle"), let _bundle = Bundle(url: url) {
+            bundle = _bundle
+        }
 
         //let stringsURL = bundle.resourceURL!.appendingPathComponent("Localizable.strings")
         let bundleLocalization = bundle.localizedString(forKey: string.rawValue, value: nil, table: nil)
